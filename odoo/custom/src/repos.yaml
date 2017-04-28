@@ -13,3 +13,57 @@
         - ocb $ODOO_VERSION
         # Example of a merge of the PR with the number <PR>
         # - oca refs/pull/<PR>/head
+
+./partner-contact:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        oca: https://github.com/OCA/partner-contact.git
+        laslabs: https://github.com/LasLabs/partner-contact.git
+    target:
+        laslabs aggregated_branch_name
+    merges:
+        - oca $ODOO_VERSION
+
+./server-tools:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        oca: https://github.com/OCA/server-tools.git
+        laslabs: https://github.com/LasLabs/server-tools.git
+    target:
+        laslabs aggregated_branch_name
+    merges:
+        - oca $ODOO_VERSION
+
+./web:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        oca: https://github.com/OCA/web.git
+        laslabs: https://github.com/LasLabs/web.git
+    merges:
+        - oca $ODOO_VERSION
+    target: laslabs aggregated_branch_name
+
+./website:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        oca: https://github.com/OCA/website.git
+        laslabs: https://github.com/LasLabs/website.git
+    merges:
+        - oca $ODOO_VERSION
+        - laslabs release/10.0/website_field_autocomplete_related
+    target: laslabs aggregated_branch_name
+
+./vertical-medical:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        oca: https://github.com/OCA/vertical-medical.git
+        laslabs: https://github.com/LasLabs/vertical-medical.git
+    merges:
+        - oca $ODOO_VERSION
+        - laslabs release/10.0
+    target: laslabs aggregated_branch_name
