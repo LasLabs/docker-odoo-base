@@ -18,7 +18,7 @@ REQ_TYPES = {
 def do_install(command, requirements_file):
     with open(requirements_file, 'r') as fh:
         requirements = fh.read().strip()
-    command += ' %s' % requirements
+    command += ' %s.txt' % requirements
     proc = subprocess.Popen(command.split(' '))
     proc.communicate()
 
