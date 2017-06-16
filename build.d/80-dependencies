@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+# Copyright 2017 LasLabs Inc.
+
+import os
+import subprocess
+
+
+DIR_CUSTOM = '/opt/odoo/custom/dependencies'
+
+REQ_TYPES = {
+    'apt': 'apt-get install -y',
+    'pip': 'pip install',
+    'npm': 'npm install -g',
+    'gem': 'gem install',
+}
+
+
+def do_install(command, requirements_file):
+    with open(requirements_file, 'r') as fh:
+        requirements = fh.read().strip()
+    command += ' %s' % requirements
+    proc = subprocess.Popen(command.split(' '))
+    proc.communicate()
+
+
+found_pip = False
+
+
+for name, command in REQ_TYPES.items():
+    req_file = os.path.join(
+        DIR_CUSTOM, 'requirements', '%s.txt' % name,
+    )
+    if os.path.isfile(req_file):
+        do_install(command, req_file)
+        if name == 'pip':
+            found_pip = True
+
+if not found_pip:
+    req_file = '/opt/odoo/custom/src/requirements.txt'
+    if os.path.isfile(req_file):
+        do_install(REQ_TYPES['pip'], req_file)

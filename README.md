@@ -54,6 +54,11 @@ This is its structure:
         entrypoint.d/
         build.d/
         conf.d/
+        dependencies/
+            apt_dependencies.txt
+            gem_dependencies.txt
+            npm_dependencies.txt
+            pip_dependencies.txt
         src/
             private/
             odoo/
@@ -199,6 +204,8 @@ Important notes:
 
 A normal [pip `requirements.txt`][] file, to install dependencies for your
 addons when building the subimage.
+
+###
 
 ### `/opt/odoo/common`: The useful one
 
