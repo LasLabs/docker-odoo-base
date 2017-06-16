@@ -54,11 +54,15 @@ This is its structure:
         entrypoint.d/
         build.d/
         conf.d/
+<<<<<<< HEAD
         dependencies/
             apt_dependencies.txt
             gem_dependencies.txt
             npm_dependencies.txt
             pip_dependencies.txt
+=======
+        ssh.d/
+>>>>>>> feature/ssh-keys
         src/
             private/
             odoo/
@@ -94,6 +98,24 @@ Executables here will run just before those in `/opt/odoo/common/build.d`.
 
 Files here will be environment-variable-expanded and concatenated in
 `/opt/odoo/auto/odoo.conf` at build time.
+
+#### `/opt/odoo/custom/ssh.d`
+
+Files here will be used to create the `root` and `odoo` users' SSH directories.
+
+It should follow the same structure as a standard `~/.ssh` directory, including
+`config` and `known_hosts` files.
+
+The `config` file should contain `IdentityFile` keys to represent the private
+key that should be used for that host. The key will be located in  `~/.ssh/`.
+
+Example - a private key file in the `ssh.d` folder named `my_private_key` for
+the host `repo.example.com` would have a `config` entry similar to the below:
+
+```
+Host repo.example.com
+  IdentityFile ~/.ssh/my_private_key
+```
 
 #### `/opt/odoo/custom/src`
 
