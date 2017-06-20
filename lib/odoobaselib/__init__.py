@@ -36,6 +36,12 @@ else:
 logging.root.setLevel(_log_level)
 
 
+def addons_active():
+    """ Returns a list of active addons, as defined in `addons.yml`. """
+    raw_addons = list(reduce(lambda x, y: x + y, addons_config().values()))
+    return list(filter(lambda x: x != '*', raw_addons))
+
+
 def addons_config():
     """Load configurations from ``ADDONS_YAML`` into a dict."""
     config = dict()

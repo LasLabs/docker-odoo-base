@@ -44,6 +44,8 @@ ARG PYTHONOPTIMIZE=2
 ARG WKHTMLTOPDF_VERSION=0.12.4
 ARG WKHTMLTOPDF_CHECKSUM='049b2cdec9a8254f0ef8ac273afaf54f7e25459a273e27189591edc7d7cf29db'
 ENV OPENERP_SERVER=/opt/odoo/auto/odoo.conf \
+    ADDON_INSTALL=false \
+    WAIT_CONTAINER=false \
     UNACCENT=true \
     # Git and git-aggregator
     GIT_AUTHOR_NAME=docker-odoo \
@@ -112,7 +114,7 @@ RUN curl -SLo wkhtmltox.tar.xz https://github.com/wkhtmltopdf/wkhtmltopdf/releas
 WORKDIR /opt/odoo
 RUN pip install --no-cache-dir \
     astor git-aggregator openupgradelib ptvsd==3.0.0 pudb wdb
-COPY bin/autoaggregate bin/install.sh bin/log bin/pot bin/python-odoo-shell bin/unittest /usr/local/bin/
+COPY bin/* /usr/local/bin/
 COPY bin/direxec.sh common/entrypoint.sh
 RUN ln common/entrypoint.sh common/build.sh
 COPY lib/odoobaselib /usr/local/lib/python2.7/dist-packages/odoobaselib
