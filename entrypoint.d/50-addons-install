@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set +e
-
-if [ "$ADDON_INSTALL" == true ]; then
-    install-addons
-    exit 0
-fi
