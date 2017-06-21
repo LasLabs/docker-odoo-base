@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "${CONFIG_BUILD}" = true ]; then
+if [ -f "${OPENERP_SERVER}" ]; then
     log WARNING Skipping Odoo config generation - performed at build time.
     exit 0
 fi
