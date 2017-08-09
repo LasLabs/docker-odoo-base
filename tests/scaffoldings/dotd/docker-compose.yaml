@@ -11,6 +11,8 @@ services:
       PGUSER: another_odoo
       PGPASSWORD: anotherodoopassword
       PGHOST: postgresql
+      ODOO_LIMIT_REQUEST: 8000
+      ODOO_LIST_DB: 0
     depends_on:
       - postgresql
     volumes:
