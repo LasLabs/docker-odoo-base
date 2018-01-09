@@ -2,6 +2,7 @@ FROM debian:8
 
 # Enable Odoo user and filestore
 RUN useradd -md /home/odoo -s /bin/false odoo \
+    && usermod -aG odoo odoo \
     && mkdir -p /var/lib/odoo \
     && chown -R odoo:odoo /var/lib/odoo \
     && sync
